@@ -96,7 +96,6 @@ def index(request,page=1):
         else:
             raw_list.append(user)
     recomended_list = sort_user(raw_list,request.user)
-    #recomended_list = raw_list
     page_num = 10
     page_item = Paginator(recomended_list,page_num)
     page = page_item.get_page(page)
