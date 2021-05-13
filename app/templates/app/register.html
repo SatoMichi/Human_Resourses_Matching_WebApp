@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Register</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    </head>
+
+    <body class="container">
+        <h1 class="display-4 text-primary">Register New User</h1>
+        <h5 class="caption">Please enter your user infomations, and click "Register" button.</h5>
+        {% if messages %}
+        <ul class="messages">
+            {% for msg in messages %}
+            <li {% if msg.tags %} class={{msg.tags}} {% endif %}>{{msg}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action={% url "register" %} method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-primary" name="next" value="confirm" type="submit">Register</button>
+        </form>
+    </body>
+</html>

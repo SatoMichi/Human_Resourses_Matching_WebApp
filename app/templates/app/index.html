@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <script>
+            function sendGroupForm(page) {
+                document.group_form.action += page;
+                document.group_form.submit();
+            }
+        </script>
+    </head>
+
+    <body class="container">
+        <nav class="navbar navbar-expand navbar-light bg-light">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href={% url "index" %}>Top Page</a></li>
+                <li class="nav-item"><a class="nav-link" href={% url "friends" %}>Friend List</a></li>
+                <li class="nav-item"><a class="nav-link" href={% url "find" %}>Find User</a></li>
+                <li class="nav-item"><a class="nav-link" href={% url "profile" login_user.id %}>Your Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href={% url "friends_request" %}>Friend Request</a></li>
+            </ul>
+            <span>logined: <span class="h6">"{{login_user}}".</span></span>
+        </nav>
+
+        <h1 class="display-4 text-primary">{{title}}</h1>
+        
+        {% if messages %}
+        <ul class="messages">
+            {% for msg in messages %}
+            <li {% if msg.tags %} class={{msg.tags}} {% endif %}>{{msg}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <p class="h5 mt-4">{{msg}}</p>
+        
+        <hr>
+        <table class="table mt-3">
+            <tr><th>Request List</th></tr>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+            </tr>
+        {% for user in data %}
+            <tr>
+                <td>{{user.first_name}}</td>
+                <td>{{user.last_name}}</td>
+                <td><a href={% url "profile" user.id %}>Profile</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+
+        <ul class="pagination justify-content-center">
+            {% if data.has_previous %}
+            <li class="page-item"><a class="page-link" href={% url "index" %}>&laquo; First</a></li>
+            <li class="page-item"><a class="page-link" href={% url "index" data.previous_page_number %}>&laquo; Prev</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link">&laquo; First</a></li>
+            <li class="page-item"><a class="page-link">&laquo; Prev</a></li>
+            {% endif %}
+            
+            <li class="page-item"><a class="page-link">{{data.number}}/{{data.paginator.num_pages}}</a></li>
+            
+            {% if data.has_next %}
+            <li class="page-item"><a class="page-link" href={% url "index" data.next_page_number %}>Next &raquo;</a></li>
+            <li class="page-item"><a class="page-link" href={% url "index" data.paginator.num_pages %}>Last &raquo;</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link">Next &raquo;</a></li>
+            <li class="page-item"><a class="page-link">Last &raquo;</a></li>
+            {% endif %}
+        </ul>
+
+        <hr>
+        <div class="my-3">
+            <span class="font-weight-bold"><a href="/admin/logout?next=/app/">[ logout ]</a></span>
+            <span class="float-right">copyright 2021 起業家プロジェクト.</span>
+        </div>
+    </body>
+</html>
