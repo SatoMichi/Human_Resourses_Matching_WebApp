@@ -59,7 +59,7 @@ Important Fields:
 -	Owner (Foreign Key, User)
 -	User (Foreign Key, User)
 
-**※In this web-app, Friend is one directional relationship**
+**※ In this web-app, Friend is one directional relationship**
 
 # URL page structure and its functions
 ## __domain__/app/register
