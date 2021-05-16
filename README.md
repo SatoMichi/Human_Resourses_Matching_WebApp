@@ -93,7 +93,7 @@ Important Fields:
 # Note
 -	There is no function for automatically delete the unnecessary image in img file. Which means, this web-app continue to hold previous image even if user updated their Profile picture. Automatic process which deletes the unnecessary images from folder periodically will be needed to be implemented. 
 -	Due to problem of **Curse of dimensionality**, if the vector extracted from user Profile is **Sparse Vector**, the accuracy of the recommendation algorithm will decline. To solve this problem, classic approach uses **PCA(Principle Component Analysis)**. In addition, adding another metric for recommendation will help it too.
--	**Do not just clone and deploy is online!! There is many Security Problem (e.g. Secret_Key is revealed in setting.py).**
+-	**Do not just clone and deploy this online!! There is many Security Problems (e.g. Secret_Key is revealed in setting.py).**
 
 # License
 LGPL (GNU Lesser General Public License)
