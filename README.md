@@ -26,7 +26,7 @@ python manage.py runserver
 3.	If you done with testing and understanding with function of the web-app, you can delete all the test user from User database by Admin privilege.
 
 ## Register a new people
-1.	Go to __domain__app/register/, then, it will display a create user account page.
+1.	Go to __domain__/app/register/, then, it will display a create user account page.
 2.	By filling the form and register, it will redirect you to login page of the web-app. You need to login and complete the form for your personal profile and image uploading.
 3.	After completing the task, you are able to use web-app
 
@@ -93,6 +93,7 @@ Important Fields:
 # Note
 -	There is no function for automatically delete the unnecessary image in img file. Which means, this web-app continue to hold previous image even if user updated their Profile picture. Automatic process which deletes the unnecessary images from folder periodically will be needed to be implemented. 
 -	Due to problem of **Curse of dimensionality**, if the vector extracted from user Profile is **Sparse Vector**, the accuracy of the recommendation algorithm will decline. To solve this problem, classic approach uses **PCA(Principle Component Analysis)**. In addition, adding another metric for recommendation will help it too.
+-	**Do not just clone and deploy is online!! There is many Security Problem (e.g. Secret_Key is revealed in setting.py).**
 
 # License
 LGPL (GNU Lesser General Public License)
